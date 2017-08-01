@@ -23,10 +23,11 @@ import html
 
 
 def tb(article):
-    # prints article
-    print(article)
     # pass article into TextBlob
     blob = TextBlob(article)
+    print("\n",'ARTICLE', count, 'SENTIMENT')
+    print("Polarity:", blob.sentiment.polarity)
+    print("Subjectivity:", blob.sentiment.subjectivity)
 
 # for loop to print out each sentence and its polarity
     for sentence in blob.sentences:
@@ -48,7 +49,9 @@ json_format = json.loads(resp_data)
 # parse dictionary by individual articles
 articles = json_format["articles"]
 # format articles to replace unwanted character with a new line
+count = 0
 for a in articles:
+    count = count + 1
     tb(html.unescape(articles[a].replace("\n", "\n")))
 
 
