@@ -5,13 +5,8 @@
 # ROM is ticker being returned)
 
 # the code returns (in order):
-# - article 1 full text
-# - article 1 broken down by sentence
-# - article 1 polarity score by sentence
-# - article 2 full text
-# - article 2 broken down by sentence
-# - article 2 polarity score by sentence
-# - article 3.....
+# Article n sentiment: polarity and subjectivity
+# Article n break down by sentence, sentence polarity
 
 import textblob
 import json
