@@ -5,8 +5,9 @@
 # ROM is ticker being returned)
 
 # the code returns (in order):
-# Article n sentiment: polarity and subjectivity
-# Article n break down by sentence, sentence polarity
+# Article title (key value)
+# Article sentiment: polarity and subjectivity
+# Article break down by sentence, sentence polarity
 
 import textblob
 import json
@@ -20,7 +21,8 @@ import html
 def tb(article):
     # pass article into TextBlob
     blob = TextBlob(article)
-    print("\n",'ARTICLE', title, 'SENTIMENT')
+    print("\n"'ARTICLE:', title)
+    print('Sentiment Results -')
     print("Polarity:", blob.sentiment.polarity)
     print("Subjectivity:", blob.sentiment.subjectivity)
 
@@ -52,4 +54,5 @@ for a in articles:
     count = count + 1
     tb(html.unescape(articles[a].replace("\n", "\n")))
 
+print('Total Number of Articles Analyzed:', count)
 # end of script
