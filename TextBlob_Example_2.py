@@ -20,7 +20,7 @@ import html
 def tb(article):
     # pass article into TextBlob
     blob = TextBlob(article)
-    print("\n",'ARTICLE', count, 'SENTIMENT')
+    print("\n",'ARTICLE', title, 'SENTIMENT')
     print("Polarity:", blob.sentiment.polarity)
     print("Subjectivity:", blob.sentiment.subjectivity)
 
@@ -46,8 +46,10 @@ articles = json_format["articles"]
 # format articles to replace unwanted character with a new line
 count = 0
 for a in articles:
+    for key, values in articles.items():
+        title = key
+        print(title)
     count = count + 1
     tb(html.unescape(articles[a].replace("\n", "\n")))
-
 
 # end of script
