@@ -1,3 +1,18 @@
+# this code connects to the DynamoDB API to run a textblob sentiment analysis on an article in the DB
+
+# up to 10 articles pertaining to a given ticker are queried. Desired ticker should be entered at the end of the
+# url variable on line 29 (example: in http://ec2-174-129-144-17.compute-1.amazonaws.com:8184/sbcmanager/articles/ROM,
+# ROM is ticker being returned)
+
+# the code returns (in order):
+# - article 1 full text
+# - article 1 broken down by sentence
+# - article 1 polarity score by sentence
+# - article 2 full text
+# - article 2 broken down by sentence
+# - article 2 polarity score by sentence
+# - article 3..... 
+
 import textblob
 import json
 import sys
@@ -16,13 +31,8 @@ def tb(article):
 # for loop to print out the sentence, its polarity, and noun phrases within each sentence
     for sentence in blob.sentences:
          print(sentence)
-         print(sentence.sentiment.polarity)
-         print(sentence.noun_phrases)
+         print('Sentence Polarity Score:', sentence.sentiment.polarity)
 
-<<<<<<< HEAD
-
-=======
->>>>>>> f77f74a5c3bf56b2150a418cfc19f84e2a0ed765
 # initialize endpoint connection
 url = 'http://ec2-174-129-144-17.compute-1.amazonaws.com:8184/sbcmanager/articles/ROM'
 # request connection
@@ -36,18 +46,7 @@ resp_data = resp_data.decode("utf-8")
 json_format = json.loads(resp_data)
 articles = json_format["articles"]
 for a in articles:
-<<<<<<< HEAD
     tb(html.unescape(articles[a].replace("\n", "\n")))
 
-'''
-titles = articles.keys()
-for  i in range (len(titles)):
-    content = articles[title]
-    print("Content: " + contentarticles[a].replace("\n", "")
-    tb(content)
-'''
-=======
-    tb(html.unescape(articles[a].replace("\n", "")))
->>>>>>> f77f74a5c3bf56b2150a418cfc19f84e2a0ed765
 
 
