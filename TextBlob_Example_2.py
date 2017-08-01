@@ -11,7 +11,7 @@
 # - article 2 full text
 # - article 2 broken down by sentence
 # - article 2 polarity score by sentence
-# - article 3..... 
+# - article 3.....
 
 import textblob
 import json
@@ -23,12 +23,12 @@ import html
 
 
 def tb(article):
-    # print results
+    # prints article
     print(article)
-    # pass results through textblob
+    # pass article into TextBlob
     blob = TextBlob(article)
 
-# for loop to print out the sentence, its polarity, and noun phrases within each sentence
+# for loop to print out each sentence and its polarity
     for sentence in blob.sentences:
          print(sentence)
          print('Sentence Polarity Score:', sentence.sentiment.polarity)
@@ -43,10 +43,13 @@ resp = urllib.request.urlopen(req)
 resp_data = resp.read()
 # decode text in utf-8 format
 resp_data = resp_data.decode("utf-8")
+# transform decoded text from string to JSON dictionary
 json_format = json.loads(resp_data)
+# parse dictionary by individual articles
 articles = json_format["articles"]
+# format articles to replace unwanted character with a new line
 for a in articles:
     tb(html.unescape(articles[a].replace("\n", "\n")))
 
 
-
+# end of script
